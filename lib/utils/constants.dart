@@ -19,4 +19,5 @@ class AppConstants {
   static const String githubUrl = 'https://github.com/paulalicante';
   static const String miManitasUrl = 'https://mimanitas.me';
   static const String emailAddress = 'mailto:paul@ward.no';
+  static const String contactEmail = 'paulsidneyward@gmail.com';
 }

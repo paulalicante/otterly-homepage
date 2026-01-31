@@ -4,6 +4,7 @@ import 'sections/hero_section.dart';
 import 'sections/featured_section.dart';
 import 'sections/tools_section.dart';
 import 'sections/about_section.dart';
+import 'sections/contact_section.dart';
 import 'sections/footer_section.dart';
 import 'widgets/nav_bar.dart';
 import 'utils/constants.dart';
@@ -125,11 +126,14 @@ class _HomePageState extends State<HomePage> {
                   child: const AboutSection(),
                 ),
 
-                // Footer
+                // Contact form
                 Container(
                   key: _contactKey,
-                  child: const FooterSection(),
+                  child: const ContactSection(),
                 ),
+
+                // Footer
+                const FooterSection(),
               ],
             ),
           ),

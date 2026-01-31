@@ -156,39 +156,11 @@ class _HeroSectionState extends State<HeroSection>
   }
 
   Widget _buildOtterPlaceholder() {
-    // Placeholder until otter mascot art is ready
-    return Container(
-      width: 260,
-      height: 260,
-      decoration: BoxDecoration(
-        gradient: RadialGradient(
-          colors: [
-            OtterlyColors.coralLight.withOpacity(0.5),
-            OtterlyColors.sand.withOpacity(0.3),
-          ],
-        ),
-        shape: BoxShape.circle,
-      ),
-      child: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              '🦦',
-              style: TextStyle(fontSize: 80),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              'Otterly Creative',
-              style: GoogleFonts.nunito(
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-                color: OtterlyColors.coral,
-              ),
-            ),
-          ],
-        ),
-      ),
+    return Image.asset(
+      'assets/images/otter_mascot.png',
+      width: 280,
+      height: 280,
+      fit: BoxFit.contain,
     );
   }
 }

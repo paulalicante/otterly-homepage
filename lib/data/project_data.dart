@@ -6,18 +6,17 @@ class ProjectData {
     Project(
       title: 'Inmersion Natural',
       tagline:
-          'A Spanish learning app that teaches you like a toddler learns — '
+          'A language learning app that teaches you like a toddler learns — '
           'through pictures, sounds, and play. No boring grammar tables.',
       description:
-          'Built for adults who want to pick up Spanish efficiently, '
-          'Inmersion Natural immerses you in visual-first learning. '
-          'Every word has custom AI-generated artwork, professional-quality '
-          'pronunciation, and context-rich example sentences.',
+          'Built for adults who want to pick up a new language efficiently. '
+          'Visual-first learning with AI-generated artwork, professional-quality '
+          'pronunciation, and a grammar engine that works invisibly.',
       highlights: [
-        '932 vocabulary cards, each with custom AI-generated artwork',
+        'Over 1,000 vocabulary cards today — growing to 5,000 in the full release',
         'Three ways to learn: match images, absorb grammar naturally, or practice speaking',
         'A hidden 10-stage grammar engine that teaches without ever showing a grammar label',
-        'Every word pronounced by a professional-quality AI voice',
+        'Designed for easy adaptation to any language pair — starting with English to Spanish, with Norwegian and all major languages to follow',
       ],
       techStack: ['Flask', 'AI Images', 'ElevenLabs', 'OpenAI'],
       icon: Icons.school,
@@ -26,17 +25,16 @@ class ProjectData {
     Project(
       title: 'Mi Manitas',
       tagline:
-          'A neighborhood marketplace where your neighbors help each other '
-          'with everyday tasks — painting, gardening, moving, you name it.',
+          'A local help marketplace that connects people who need a hand '
+          'with skilled helpers nearby — painting, gardening, moving, you name it.',
       description:
-          'Built for real barrios in Alicante, Spain. Mi Manitas flips the '
-          'gig economy model: workers post when they\'re available, and '
-          'neighbors find help right around the corner.',
+          'Mi Manitas flips the gig economy model: helpers post when '
+          'they\'re available, and people find trusted help close by.',
       highlights: [
-        'Built for real neighborhoods in Alicante, Spain',
-        'Workers post when they\'re free — not the other way around',
-        'Secure payments held in escrow until you\'re happy',
-        'Full Spanish tax compliance baked in from day one',
+        'Launching in Alicante, rolling out across all of Spain in Q2 2026',
+        'Helpers post when they\'re available — flipping the traditional gig model',
+        'Secure escrow payments with a 7-day satisfaction guarantee',
+        'Seeking partners to bring Mi Manitas to other countries',
       ],
       techStack: ['Flutter', 'Supabase', 'Stripe Connect'],
       icon: Icons.handyman,

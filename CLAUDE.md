@@ -58,19 +58,22 @@ Otterly_Homepage/
 └── build/web/                  # Production build output
 ```
 
-## Current Status (Updated: 2026-01-30)
-- All 17 Dart files created and building cleanly
-- Single-page scroll layout with 5 sections: Hero, Featured, Tools, About, Footer
+## Current Status (Updated: 2026-01-31)
+- 18 Dart files created and building cleanly
+- Single-page scroll layout with 6 sections: Hero, Featured, Tools, About, Contact, Footer
 - Sticky nav bar with smooth scroll-to-section links
 - Responsive: 1-col mobile, 2-col tablet, 3-col desktop for tools grid
 - Scroll-triggered fade+slide animations on all cards and sections
 - Warm Otterly color palette: cream (#FFF8F0), coral (#E8785A), teal (#5BA4A4)
+- Otter mascot logo added (assets/images/otter_mascot.png)
+- Contact form ("Say Hello") sends via mailto: to contactEmail without exposing address
+- Inmersion Natural content updated: 1000+ cards, 5000 target, multi-language support
+- Mi Manitas content updated: Spain-wide Q2 2026 rollout, seeking international partners
 
 ## Pending
-- [ ] Otter mascot illustration (currently emoji placeholder)
+- [ ] Deploy to Vercel with www.ward.no custom domain
 - [ ] Project screenshots for cards
 - [ ] User-provided About section bio text
-- [ ] Deploy to Vercel with www.ward.no custom domain
 - [ ] Favicon and PWA icons
 
 ## Color Palette (Warm Otter)
