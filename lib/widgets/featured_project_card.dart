@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../app_theme.dart';
 import '../models/project.dart';
+import '../utils/responsive.dart';
 import 'tech_chip.dart';
 
 class FeaturedProjectCard extends StatefulWidget {
@@ -14,12 +15,35 @@ class FeaturedProjectCard extends StatefulWidget {
   State<FeaturedProjectCard> createState() => _FeaturedProjectCardState();
 }
 
-class _FeaturedProjectCardState extends State<FeaturedProjectCard> {
+class _FeaturedProjectCardState extends State<FeaturedProjectCard>
+    with SingleTickerProviderStateMixin {
   bool _hovering = false;
+  bool _expanded = false;
+  late AnimationController _pulseController;
+  late Animation<double> _pulseAnim;
+
+  @override
+  void initState() {
+    super.initState();
+    _pulseController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1500),
+    )..repeat(reverse: true);
+    _pulseAnim = Tween<double>(begin: 0.6, end: 1.0).animate(
+      CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
+    );
+  }
+
+  @override
+  void dispose() {
+    _pulseController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final p = widget.project;
+    final hasShowcase = p.showcaseFeatures.isNotEmpty;
 
     return MouseRegion(
       onEnter: (_) => setState(() => _hovering = true),
@@ -154,35 +178,188 @@ class _FeaturedProjectCardState extends State<FeaturedProjectCard> {
                 children: p.techStack.map((t) => TechChip(label: t)).toList(),
               ),
 
-              // Live link
-              if (p.liveUrl != null) ...[
+              // Live link + Show more button
+              if (p.liveUrl != null || hasShowcase) ...[
                 const SizedBox(height: 20),
-                MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: GestureDetector(
-                    onTap: () => _launchUrl(p.liveUrl!),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(Icons.open_in_new,
-                            size: 16, color: OtterlyColors.coral),
-                        const SizedBox(width: 6),
-                        Text(
-                          'Visit ${p.title}',
-                          style: GoogleFonts.inter(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600,
-                            color: OtterlyColors.coral,
+                Row(
+                  children: [
+                    if (p.liveUrl != null)
+                      MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: GestureDetector(
+                          onTap: () => _launchUrl(p.liveUrl!),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(Icons.open_in_new,
+                                  size: 16, color: OtterlyColors.coral),
+                              const SizedBox(width: 6),
+                              Text(
+                                'Visit ${p.title}',
+                                style: GoogleFonts.inter(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w600,
+                                  color: OtterlyColors.coral,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                      ],
-                    ),
-                  ),
+                      ),
+                    if (p.liveUrl != null && hasShowcase)
+                      const SizedBox(width: 20),
+                    if (hasShowcase)
+                      MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: GestureDetector(
+                          onTap: () => setState(() => _expanded = !_expanded),
+                          child: AnimatedBuilder(
+                            animation: _pulseAnim,
+                            builder: (context, child) {
+                              return Opacity(
+                                opacity: _expanded ? 1.0 : _pulseAnim.value,
+                                child: child,
+                              );
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 14, vertical: 7),
+                              decoration: BoxDecoration(
+                                color: OtterlyColors.tealLight,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(
+                                    _expanded
+                                        ? Icons.expand_less
+                                        : Icons.expand_more,
+                                    size: 18,
+                                    color: OtterlyColors.teal,
+                                  ),
+                                  const SizedBox(width: 4),
+                                  Text(
+                                    _expanded
+                                        ? 'Show less'
+                                        : 'See what\'s under the hood',
+                                    style: GoogleFonts.inter(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w600,
+                                      color: OtterlyColors.teal,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                  ],
                 ),
               ],
+
+              // Expandable showcase
+              AnimatedCrossFade(
+                firstChild: const SizedBox.shrink(),
+                secondChild: hasShowcase
+                    ? _buildShowcase(context, p.showcaseFeatures)
+                    : const SizedBox.shrink(),
+                crossFadeState: _expanded
+                    ? CrossFadeState.showSecond
+                    : CrossFadeState.showFirst,
+                duration: const Duration(milliseconds: 300),
+              ),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildShowcase(
+      BuildContext context, List<ShowcaseFeature> features) {
+    final isMobile = Responsive.isMobile(context);
+    final crossAxisCount = isMobile ? 1 : 2;
+
+    return Padding(
+      padding: const EdgeInsets.only(top: 24),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: double.infinity,
+            height: 1,
+            color: OtterlyColors.sand,
+          ),
+          const SizedBox(height: 24),
+          for (int i = 0; i < features.length; i += crossAxisCount) ...[
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                for (int j = i;
+                    j < i + crossAxisCount && j < features.length;
+                    j++) ...[
+                  Expanded(child: _buildFeatureTile(features[j])),
+                  if (j < i + crossAxisCount - 1 && j < features.length - 1)
+                    const SizedBox(width: 12),
+                ],
+                if (i + crossAxisCount > features.length)
+                  const Expanded(child: SizedBox()),
+              ],
+            ),
+            if (i + crossAxisCount < features.length)
+              const SizedBox(height: 12),
+          ],
+        ],
+      ),
+    );
+  }
+
+  Widget _buildFeatureTile(ShowcaseFeature feature) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: OtterlyColors.cream,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: OtterlyColors.tealLight,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Icon(feature.icon, color: OtterlyColors.teal, size: 20),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  feature.title,
+                  style: GoogleFonts.nunito(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w700,
+                    color: OtterlyColors.textDark,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  feature.description,
+                  style: GoogleFonts.inter(
+                    fontSize: 13,
+                    color: OtterlyColors.textMedium,
+                    height: 1.4,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

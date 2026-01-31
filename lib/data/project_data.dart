@@ -42,6 +42,64 @@ class ProjectData {
       isLive: true,
       liveUrl: 'https://mimanitas.me',
       logoAsset: 'assets/images/mimanitas-wordmark.png',
+      showcaseFeatures: [
+        ShowcaseFeature(
+          icon: Icons.payments_outlined,
+          title: 'End-to-End Payments',
+          description:
+              'Full Stripe Connect integration with escrow, instant payouts, '
+              'and Spanish bank validation (IBAN, DNI, NIE).',
+        ),
+        ShowcaseFeature(
+          icon: Icons.gavel_outlined,
+          title: 'Spanish Legal Compliance',
+          description:
+              'Built from day one around Spanish labor law, DAC7 tax reporting, '
+              'and GDPR — not patched in later.',
+        ),
+        ShowcaseFeature(
+          icon: Icons.calendar_month_outlined,
+          title: 'Availability Calendar',
+          description:
+              'Helpers post when they\'re free. Seekers browse and book. '
+              'No back-and-forth scheduling.',
+        ),
+        ShowcaseFeature(
+          icon: Icons.chat_outlined,
+          title: 'Real-Time Messaging',
+          description:
+              'In-app messaging with live notifications so helpers and seekers '
+              'can coordinate without sharing personal numbers.',
+        ),
+        ShowcaseFeature(
+          icon: Icons.verified_user_outlined,
+          title: 'Phone Verification',
+          description:
+              'SMS verification via Twilio keeps the community trusted. '
+              'WhatsApp notifications coming next.',
+        ),
+        ShowcaseFeature(
+          icon: Icons.language_outlined,
+          title: 'Multi-Platform',
+          description:
+              'One Flutter codebase serves web, Android, and iOS. '
+              'Live today at mimanitas.me with mobile apps to follow.',
+        ),
+        ShowcaseFeature(
+          icon: Icons.notifications_active_outlined,
+          title: 'Webhook-Driven Notifications',
+          description:
+              'Stripe webhooks and Supabase realtime triggers ensure instant '
+              'alerts for new jobs, applications, and payment events.',
+        ),
+        ShowcaseFeature(
+          icon: Icons.security_outlined,
+          title: 'Escrow Protection',
+          description:
+              'Payment is held securely until the job is done. '
+              'Both sides are protected.',
+        ),
+      ],
     ),
   ];
 

@@ -12,6 +12,7 @@ class Project {
   final String? liveUrl;
   final String? githubUrl;
   final String? logoAsset;
+  final List<ShowcaseFeature> showcaseFeatures;
 
   const Project({
     required this.title,
@@ -25,5 +26,18 @@ class Project {
     this.liveUrl,
     this.githubUrl,
     this.logoAsset,
+    this.showcaseFeatures = const [],
+  });
+}
+
+class ShowcaseFeature {
+  final IconData icon;
+  final String title;
+  final String description;
+
+  const ShowcaseFeature({
+    required this.icon,
+    required this.title,
+    required this.description,
   });
 }
