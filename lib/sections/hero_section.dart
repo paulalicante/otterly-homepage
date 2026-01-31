@@ -89,7 +89,7 @@ class _HeroSectionState extends State<HeroSection>
           flex: 3,
           child: _buildTextContent(context),
         ),
-        const SizedBox(width: 60),
+        const SizedBox(width: 20),
         // Right: decorative otter placeholder
         Expanded(
           flex: 2,
@@ -105,7 +105,7 @@ class _HeroSectionState extends State<HeroSection>
       children: [
         const SizedBox(height: 80),
         _buildOtterPlaceholder(),
-        const SizedBox(height: 40),
+        const SizedBox(height: 16),
         _buildTextContent(context),
         const SizedBox(height: 40),
       ],

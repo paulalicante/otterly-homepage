@@ -22,7 +22,12 @@ class FooterSection extends StatelessWidget {
           child: Column(
             children: [
               // Otter wave
-              const Text('🦦', style: TextStyle(fontSize: 36)),
+              Image.asset(
+                'assets/images/otter_mascot.png',
+                width: 60,
+                height: 60,
+                fit: BoxFit.contain,
+              ),
               const SizedBox(height: 20),
 
               // Contact links
