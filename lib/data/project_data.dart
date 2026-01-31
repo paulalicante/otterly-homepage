@@ -23,24 +23,25 @@ class ProjectData {
       isFeatured: true,
     ),
     Project(
-      title: 'Mi Manitas',
+      title: 'MiManitas',
       tagline:
           'A local help marketplace that connects people who need a hand '
           'with skilled helpers nearby — painting, gardening, moving, you name it.',
       description:
-          'Mi Manitas flips the gig economy model: helpers post when '
+          'MiManitas flips the gig economy model: helpers post when '
           'they\'re available, and people find trusted help close by.',
       highlights: [
         'Launching in Alicante, rolling out across all of Spain in Q2 2026',
         'Helpers post when they\'re available — flipping the traditional gig model',
         'Secure escrow payments with a 7-day satisfaction guarantee',
-        'Seeking partners to bring Mi Manitas to other countries',
+        'Seeking partners to bring MiManitas to other countries',
       ],
       techStack: ['Flutter', 'Supabase', 'Stripe Connect'],
       icon: Icons.handyman,
       isFeatured: true,
       isLive: true,
       liveUrl: 'https://mimanitas.me',
+      logoAsset: 'assets/images/mimanitas-wordmark.png',
     ),
   ];
 

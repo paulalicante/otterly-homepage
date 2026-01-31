@@ -11,6 +11,7 @@ class Project {
   final bool isLive;
   final String? liveUrl;
   final String? githubUrl;
+  final String? logoAsset;
 
   const Project({
     required this.title,
@@ -23,5 +24,6 @@ class Project {
     this.isLive = false,
     this.liveUrl,
     this.githubUrl,
+    this.logoAsset,
   });
 }

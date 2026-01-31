@@ -58,10 +58,17 @@ class _FeaturedProjectCardState extends State<FeaturedProjectCard> {
                   ),
                   const SizedBox(width: 16),
                   Expanded(
-                    child: Text(
-                      p.title,
-                      style: Theme.of(context).textTheme.displaySmall,
-                    ),
+                    child: p.logoAsset != null
+                        ? Image.asset(
+                            p.logoAsset!,
+                            height: 32,
+                            fit: BoxFit.contain,
+                            alignment: Alignment.centerLeft,
+                          )
+                        : Text(
+                            p.title,
+                            style: Theme.of(context).textTheme.displaySmall,
+                          ),
                   ),
                   if (p.isLive)
                     Container(
