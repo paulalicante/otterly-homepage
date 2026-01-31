@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'app_theme.dart';
 import 'sections/hero_section.dart';
 import 'sections/featured_section.dart';
+import 'sections/mimanitas_showcase_section.dart';
 import 'sections/tools_section.dart';
 import 'sections/about_section.dart';
 import 'sections/contact_section.dart';
@@ -113,6 +114,9 @@ class _HomePageState extends State<HomePage> {
                   key: _projectsKey,
                   child: const FeaturedSection(),
                 ),
+
+                // MiManitas deep dive
+                const MiManitasShowcaseSection(),
 
                 // Tools
                 Container(
