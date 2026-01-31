@@ -53,10 +53,10 @@ class MiManitasShowcaseSection extends StatelessWidget {
     ),
     _Feature(
       icon: Icons.notifications_active_outlined,
-      title: 'Smart Notifications',
+      title: 'Webhook-Driven Notifications',
       description:
-          'Real-time alerts when new jobs are posted nearby. '
-          'Helpers never miss an opportunity.',
+          'Stripe webhooks and Supabase realtime triggers ensure instant '
+          'alerts for new jobs, applications, and payment events.',
     ),
     _Feature(
       icon: Icons.security_outlined,
