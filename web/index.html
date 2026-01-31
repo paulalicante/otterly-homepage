@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base href="$FLUTTER_BASE_HREF">
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO -->
+  <title>Paul Ward | Builder of Apps & Tools | ward.no</title>
+  <meta name="description" content="Portfolio of Paul Ward — building useful apps and playful tools from sunny Alicante, Spain. Featuring Inmersion Natural, Mi Manitas, and more.">
+  <meta name="author" content="Paul Ward">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Paul Ward | Builder of Apps & Tools">
+  <meta property="og:description" content="Building useful apps and playful tools from sunny Alicante, Spain.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.ward.no">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Paul Ward | Builder of Apps & Tools">
+  <meta name="twitter:description" content="Building useful apps and playful tools from sunny Alicante, Spain.">
+
+  <!-- iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Ward.no">
+
+  <!-- Theme color -->
+  <meta name="theme-color" content="#FFF8F0">
+
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <style>
+    /* Loading screen while Flutter boots */
+    body {
+      margin: 0;
+      background-color: #FFF8F0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      overflow: hidden;
+    }
+    .loading {
+      text-align: center;
+      color: #636E72;
+    }
+    .loading h1 {
+      font-size: 24px;
+      font-weight: 700;
+      color: #2D3436;
+      margin-bottom: 8px;
+    }
+    .loading p {
+      font-size: 14px;
+      margin-top: 0;
+    }
+    .dot-pulse {
+      display: inline-flex;
+      gap: 6px;
+      margin-top: 16px;
+    }
+    .dot-pulse span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #E8785A;
+      animation: pulse 1.2s ease-in-out infinite;
+    }
+    .dot-pulse span:nth-child(2) { animation-delay: 0.2s; }
+    .dot-pulse span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+  </style>
+</head>
+<body>
+  <div class="loading">
+    <h1>ward.no</h1>
+    <p>Loading...</p>
+    <div class="dot-pulse">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>

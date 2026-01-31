@@ -1,0 +1,11 @@
+{
+  "name": "Paul Ward | ward.no",
+  "short_name": "ward.no",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#FFF8F0",
+  "theme_color": "#E8785A",
+  "description": "Portfolio of Paul Ward — building useful apps and playful tools.",
+  "orientation": "portrait-primary",
+  "prefer_related_applications": false
+}
