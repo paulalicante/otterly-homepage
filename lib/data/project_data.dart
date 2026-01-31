@@ -41,7 +41,7 @@ class ProjectData {
       isFeatured: true,
       isLive: true,
       liveUrl: 'https://mimanitas.me',
-      logoAsset: 'assets/images/mimanitas-wordmark.png',
+      logoAsset: 'assets/images/mimanitas-wordmark.svg',
       showcaseFeatures: [
         ShowcaseFeature(
           icon: Icons.payments_outlined,

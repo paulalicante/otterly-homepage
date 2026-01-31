@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../app_theme.dart';
@@ -83,12 +84,19 @@ class _FeaturedProjectCardState extends State<FeaturedProjectCard>
                   const SizedBox(width: 16),
                   Expanded(
                     child: p.logoAsset != null
-                        ? Image.asset(
-                            p.logoAsset!,
-                            height: 32,
-                            fit: BoxFit.contain,
-                            alignment: Alignment.centerLeft,
-                          )
+                        ? (p.logoAsset!.endsWith('.svg')
+                            ? SvgPicture.asset(
+                                p.logoAsset!,
+                                height: 44,
+                                fit: BoxFit.contain,
+                                alignment: Alignment.centerLeft,
+                              )
+                            : Image.asset(
+                                p.logoAsset!,
+                                height: 44,
+                                fit: BoxFit.contain,
+                                alignment: Alignment.centerLeft,
+                              ))
                         : Text(
                             p.title,
                             style: Theme.of(context).textTheme.displaySmall,
