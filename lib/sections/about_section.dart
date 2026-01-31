@@ -101,7 +101,12 @@ class AboutSection extends StatelessWidget {
         ),
         child: Column(
           children: [
-            const Text('🦦', style: TextStyle(fontSize: 60)),
+            Image.asset(
+              'assets/images/otter_mascot.png',
+              width: 100,
+              height: 100,
+              fit: BoxFit.contain,
+            ),
             const SizedBox(height: 16),
             Text(
               'Alicante, Spain',
