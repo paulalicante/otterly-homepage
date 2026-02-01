@@ -1,11 +1,12 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
 import '../app_theme.dart';
 import '../utils/constants.dart';
 import '../utils/responsive.dart';
 import '../widgets/animated_on_scroll.dart';
 import '../widgets/section_header.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class ContactSection extends StatefulWidget {
   const ContactSection({super.key});
@@ -39,24 +40,40 @@ class _ContactSectionState extends State<ContactSection> {
       return;
     }
 
-    // Use mailto: as a reliable fallback that works without any third-party service
-    final subject = Uri.encodeComponent('Message from ward.no — $name');
-    final body = Uri.encodeComponent(
-      'From: $name ($email)\n\n$message',
-    );
-    final mailtoUrl = 'mailto:${AppConstants.contactEmail}?subject=$subject&body=$body';
+    setState(() {
+      _sending = true;
+      _status = null;
+    });
 
-    final uri = Uri.parse(mailtoUrl);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri);
-      setState(() {
-        _status = 'Opening your email client...';
-        _nameController.clear();
-        _emailController.clear();
-        _messageController.clear();
-      });
-    } else {
-      setState(() => _status = 'Could not open email client.');
+    try {
+      final response = await http.post(
+        Uri.parse('https://api.web3forms.com/submit'),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({
+          'access_key': AppConstants.web3FormsKey,
+          'name': name,
+          'email': email,
+          'message': message,
+          'subject': 'New message from ward.no — $name',
+        }),
+      );
+
+      final result = jsonDecode(response.body);
+
+      if (response.statusCode == 200 && result['success'] == true) {
+        setState(() {
+          _status = 'Message sent! I\'ll get back to you soon.';
+          _nameController.clear();
+          _emailController.clear();
+          _messageController.clear();
+        });
+      } else {
+        setState(() => _status = 'Something went wrong. Please try again.');
+      }
+    } catch (e) {
+      setState(() => _status = 'Could not send message. Please try again.');
+    } finally {
+      setState(() => _sending = false);
     }
   }
 

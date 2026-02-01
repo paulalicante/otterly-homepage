@@ -20,4 +20,7 @@ class AppConstants {
   static const String miManitasUrl = 'https://mimanitas.me';
   static const String emailAddress = 'mailto:paul@ward.no';
   static const String contactEmail = 'paulsidneyward@gmail.com';
+
+  // Web3Forms (get your key at https://web3forms.com/#start)
+  static const String web3FormsKey = 'YOUR_ACCESS_KEY_HERE';
 }
