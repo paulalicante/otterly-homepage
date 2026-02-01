@@ -22,5 +22,5 @@ class AppConstants {
   static const String contactEmail = 'paulsidneyward@gmail.com';
 
   // Web3Forms (get your key at https://web3forms.com/#start)
-  static const String web3FormsKey = 'YOUR_ACCESS_KEY_HERE';
+  static const String web3FormsKey = '8208d255-4d2e-48eb-b383-76acb411bd72';
 }
