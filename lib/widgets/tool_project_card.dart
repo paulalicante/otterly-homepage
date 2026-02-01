@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../app_theme.dart';
 import '../models/project.dart';
 import 'tech_chip.dart';
@@ -15,6 +16,13 @@ class ToolProjectCard extends StatefulWidget {
 
 class _ToolProjectCardState extends State<ToolProjectCard> {
   bool _hovering = false;
+
+  Future<void> _launchUrl(String url) async {
+    final uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -110,6 +118,31 @@ class _ToolProjectCardState extends State<ToolProjectCard> {
                 ),
               ),
             ),
+            if (p.liveUrl != null) ...[
+              const SizedBox(height: 14),
+              MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: GestureDetector(
+                  onTap: () => _launchUrl(p.liveUrl!),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.open_in_new,
+                          size: 15, color: OtterlyColors.coral),
+                      const SizedBox(width: 5),
+                      Text(
+                        'Try it live',
+                        style: GoogleFonts.inter(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: OtterlyColors.coral,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
             const Spacer(),
             const SizedBox(height: 12),
 
