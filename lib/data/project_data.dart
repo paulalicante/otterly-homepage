@@ -168,5 +168,20 @@ class ProjectData {
       techStack: ['JavaScript', 'Chrome Extension API'],
       icon: Icons.speed,
     ),
+    Project(
+      title: 'Chemistry Animations',
+      tagline:
+          'Interactive atomic and molecular visualizations '
+          'that make chemistry click — built in a single conversation with Claude.',
+      highlights: [
+        'Animated atoms, molecules, and chemical reactions',
+        'Built entirely with HTML, CSS, and JavaScript — no frameworks',
+        'Created live while teaching my daughter about chemistry',
+      ],
+      techStack: ['HTML', 'CSS', 'JavaScript', 'Claude'],
+      icon: Icons.science,
+      isLive: true,
+      liveUrl: 'https://www.ward.no/chemistry-animations.html',
+    ),
   ];
 }
